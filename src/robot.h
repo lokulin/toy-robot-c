@@ -21,12 +21,6 @@ struct robot {
 
 #endif
 
-robot robot_move(robot self);
-robot robot_left(robot self);
-robot robot_right(robot self);
-robot robot_report(robot self);
-robot robot_place(robot self, point loc, float facing, table table);
 robot new_robot(point loc, float facing, table table);
 
-float mod(float x, float y);
 

@@ -1,10 +1,11 @@
 #include "robot.h"
 
+float mod(float x, float y);
+
 robot robot_move(robot self) {
-  printf("Move!\n");
   return self.place(self
-                    , new_point(self.loc.x + sin(self.facing*M_PI)
-                               , self.loc.y + cos(self.facing*M_PI))
+                    , new_point(self.loc.x + sin(self.facing * acos(-1))
+                                , self.loc.y + cos(self.facing * acos(-1)))
                     , self.facing, self.table);
 }
 
@@ -17,15 +18,18 @@ robot robot_right(robot self) {
 }
 
 robot robot_report(robot self) {
-  printf("%.0f,%.0f,%.1f\n", self.loc.x, self.loc.y, self.facing);
+  if (self.table.contains(self.table, self.loc) == 1) {
+    printf("%.0f,%.0f,%.1f\n", self.loc.x, self.loc.y, self.facing);
+  }
   return self;
 }
 
 robot robot_place(robot self, point loc, float facing, table table) {
-  // table contains loc
+  if (table.contains(table, loc) == 1) {
     return new_robot(loc, facing, table);
-  // else
-  // return self
+  } else {
+    return self;
+  }
 }
 
 robot new_robot(point loc, float facing, table table) {

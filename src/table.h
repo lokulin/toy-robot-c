@@ -8,6 +8,7 @@ typedef struct table table;
 struct table {
   point llc;
   point urc;
+  int (*contains)(table, point);
 };
 
 #endif
