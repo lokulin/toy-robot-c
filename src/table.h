@@ -3,12 +3,12 @@
 #ifndef TABLE_T
 #define TABLE_T
 
-struct tableT;
+typedef struct table table;
 
-typedef struct tableT {
+struct table {
   point llc;
   point urc;
-} table;
+};
 
 #endif
 

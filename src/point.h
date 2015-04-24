@@ -1,12 +1,12 @@
 #ifndef POINT_T
 #define POINT_T
 
-struct pointT;
+typedef struct point point;
 
-typedef struct pointT {
+struct point {
   float x;
   float y;
-} point;
+};
 
 #endif
 
