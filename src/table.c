@@ -1,6 +1,6 @@
 #include "table.h"
 
-int table_contains(Table self, Point point) {
+static int table_contains(Table self, Point point) {
   return (self.llc.x <= point.x && self.llc.y <= point.y
       && self.urc.x >= point.x && self.urc.y >= point.y);
 }

@@ -1,21 +1,21 @@
 #include "robot.h"
 
-Robot robot_move(Robot self) {
+static Robot robot_move(Robot self) {
   return self.place(self
                     , new_point(self.loc.x + sin(self.facing * acos(-1))
                                 , self.loc.y + cos(self.facing * acos(-1)))
                     , self.facing, self.table);
 }
 
-Robot robot_left(Robot self) {
+static Robot robot_left(Robot self) {
   return self.place(self, self.loc, mod(self.facing - 0.5, 2.0), self.table);
 }
 
-Robot robot_right(Robot self) {
+static Robot robot_right(Robot self) {
   return self.place(self, self.loc, mod(self.facing + 0.5, 2.0), self.table);
 }
 
-Robot robot_report(Robot self, const char **directions) {
+static Robot robot_report(Robot self, const char **directions) {
   if (self.table.contains(self.table, self.loc) == 1) {
     printf("%.0f,%.0f,%s\n", self.loc.x, self.loc.y
                            , directions[(long)((self.facing*2.0)+0.5)]);
@@ -23,7 +23,7 @@ Robot robot_report(Robot self, const char **directions) {
   return self;
 }
 
-Robot robot_place(Robot self, Point loc, float facing, Table table) {
+static Robot robot_place(Robot self, Point loc, float facing, Table table) {
   if (table.contains(table, loc) == 1) {
     return new_robot(loc, facing, table);
   } else {
