@@ -70,21 +70,37 @@ static Robot send_command(Robot robot, Command cmd) {
 int robot_runner(FILE *file) {
   char *buffer = NULL;
   size_t n = 0;
+  ssize_t r;
+
   /*Make a magical invalid table space that contains nothing*/
   Table table = new_table(new_point(0,0), new_point(-1,-1));
   Robot robot = new_robot(new_point(1,2), 0.5, table);
 
-  while(getline(&buffer, &n, file) != -1) {
-    int len = strlen (buffer);
-
-    if (buffer[len - 1] == '\n') {
-        buffer[len - 1] = 0;
+  while((r=getline(&buffer, &n, stdin)) != -1) {
+    char *line=strdup(buffer);
+    if (line[r - 1] == '\n') {
+        line[r - 1] = 0;
     }
-
-    robot = send_command(robot,get_command(strdupa(buffer)));
+    robot = send_command(robot,get_command(line));
+    free(line);
   }
 
   free(buffer);
+  return EXIT_SUCCESS;
+}
+
+int robot_tester() {
+  Table table = new_table(new_point(0,0), new_point(4,4));
+  Robot robot = new_robot(new_point(0,0), 0.0, table);
+  int i;
+  for(i=0; i<1000000; i++) {
+    robot = robot.move(robot);
+    robot = robot.left(robot);
+    robot = robot.left(robot);
+    robot = robot.move(robot);
+    robot = robot.right(robot);
+    robot = robot.right(robot);
+  }
   return EXIT_SUCCESS;
 }
 

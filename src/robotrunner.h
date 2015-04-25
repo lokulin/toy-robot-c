@@ -9,4 +9,5 @@
 #include "util.h"
 
 int robot_runner(FILE *file);
+int robot_tester();
 
