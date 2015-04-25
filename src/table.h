@@ -3,15 +3,15 @@
 #ifndef TABLE_T
 #define TABLE_T
 
-typedef struct table table;
+typedef struct Table Table;
 
-struct table {
-  point llc;
-  point urc;
-  int (*contains)(table, point);
+struct Table {
+  Point llc;
+  Point urc;
+  int (*contains)(Table, Point);
 };
 
 #endif
 
-table new_table(point llc, point urc);
+Table new_table(Point llc, Point urc);
 

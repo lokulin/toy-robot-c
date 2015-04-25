@@ -1,7 +1,7 @@
 #include "point.h"
 
-point new_point(float x, float y) {
-  point point;
+Point new_point(float x, float y) {
+  Point point;
 
   point.x = x;
   point.y = y;

@@ -2,25 +2,25 @@
 #include <math.h>
 #include "point.h"
 #include "table.h"
+#include "util.h"
 
 #ifndef ROBOT_T
 #define ROBOT_T
 
-typedef struct robot robot;
+typedef struct Robot Robot;
 
-struct robot {
-  point loc;
+struct Robot {
+  Point loc;
   float facing;
-  table table;
-  robot (*move)(robot);
-  robot (*left)(robot);
-  robot (*right)(robot);
-  robot (*report)(robot);
-  robot (*place)(robot, point, float, table);
+  Table table;
+  Robot (*move)(Robot);
+  Robot (*left)(Robot);
+  Robot (*right)(Robot);
+  Robot (*report)(Robot, const char **);
+  Robot (*place)(Robot, Point, float, Table);
 };
 
 #endif
 
-robot new_robot(point loc, float facing, table table);
-
+Robot new_robot(Point loc, float facing, Table table);
 
